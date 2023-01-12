@@ -1,82 +1,15 @@
 import "./App.css";
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
+import AddModal from "./components/modal";
 
 function App() {
-  let arrayGrade = [
-    {
-      horario: "08:00",
-      segunda: "Matéria 1",
-      terca: "Matéria 2",
-      quarta: "Matéria 3",
-      quinta: "Matéria 4",
-      sexta: "Matéria 5",
-    },
-    {
-      horario: "10:00",
-      segunda: "Matéria 1",
-      terca: "Matéria 2",
-      quarta: "Matéria 3",
-      quinta: "Matéria 4",
-      sexta: "Matéria 5",
-    },
-    {
-      horario: "12:00",
-      segunda: "Matéria 1",
-      terca: "Matéria 2",
-      quarta: "Matéria 3",
-      quinta: "Matéria 4",
-      sexta: "Matéria 5",
-    },
-  ];
-  function FormFloatingBasicExample() {
-    return (
-      <>
-        <FloatingLabel controlId="floatingTextarea" className="mb-3">
-          <Form.Control as="input" placeholder="Nome da disciplina" />
-          <Form.Control as="input" placeholder="Sigla da disciplina" />
-        </FloatingLabel>
-      </>
-    );
-  }
+  const [arrayGrade, setArrayGrade] = useState([]);
 
-  function AddSubject() {
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  
+   const handleArrayChange= (data)=> {
+   setArrayGrade(arrayMaterias => [...arrayMaterias, data]);
 
-    return (
-      <>
-        <button
-          type="button"
-          onClick={handleShow}
-          class="btn btn-danger btn-margin"
-        >
-          ADICIONAR DISCIPLINA
-        </button>
-
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>ADICIONAR DISCIPLINA</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <FormFloatingBasicExample />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              CANCELAR
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              INSERIR
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
   }
 
   return (
@@ -97,7 +30,7 @@ function App() {
       </p>
 
       <div class="center">
-        <AddSubject />
+        <AddModal handleArrayChange = {handleArrayChange}/>
         <button type="button" class="btn btn-success btn-margin">
           GERAR GRADES
         </button>
