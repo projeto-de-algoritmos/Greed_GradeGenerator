@@ -72,12 +72,12 @@ import Form from "react-bootstrap/Form";
           <Form>
             <Form.Group className="mb-3" controlId="formNome">
                 <Form.Label>Nome</Form.Label>
-                <Form.Control placeholder="Digite o nome" onChange={(e)=>{setNome(e.target.value)}} />
+                <Form.Control placeholder="Digite o nome" maxLength="40" onChange={(e)=>{setNome(e.target.value)}} />
             </Form.Group>
 
         <Form.Group className="mb-3" controlId="formSigla">
             <Form.Label>Sigla</Form.Label>
-            <Form.Control  placeholder="Digite a sigla" onChange={(e)=>{setSigla(e.target.value)}} />
+            <Form.Control  placeholder="Digite a sigla" maxLength="5" onChange={(e)=>{setSigla(e.target.value)}} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formSelectDays">
             <Form.Label>Dias da semana</Form.Label>

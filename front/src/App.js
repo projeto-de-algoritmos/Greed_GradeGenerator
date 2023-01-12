@@ -6,15 +6,19 @@ function App() {
   const [arrayGrade, setArrayGrade] = useState([]);
 
   const Emoji = React.memo(({ className, label, symbol }) =>
-  symbol == ""? <span></span>:
+  symbol === ""? <span></span>:
   <span className={className} role="img" aria-label={label}>
       {String.fromCodePoint(symbol)}
   </span>)
   
    const handleArrayChange= (data)=> {
    setArrayGrade(arrayMaterias => [...arrayMaterias, data]);
-
   }
+
+  const handleRemoveItem = (obj) => {
+     
+     setArrayGrade(arrayGrade.filter(item => item.nome !== obj.nome))
+   };
 
   return (
     <div className="App">
@@ -54,6 +58,8 @@ function App() {
               <th scope="col">SEXTA</th>
               <th scope="col">SÁBADO</th>
               <th scope="col">DOMINGO</th>
+              <th scope="col"></th>
+
             </tr>
           </thead>
           <tbody>
@@ -70,6 +76,11 @@ function App() {
                   <td><Emoji symbol= {obj.sexta}/></td>
                   <td><Emoji symbol= {obj.sabado}/></td>
                   <td><Emoji symbol= {obj.domingo}/></td>
+                  <td className="center">
+                    <button type="button" class="btn" onClick={()=>{handleRemoveItem(obj)}}>
+                        <Emoji className="hover" symbol= "0x274C"/>
+                    </button>
+                   </td>
 
                 </tr>
               );
