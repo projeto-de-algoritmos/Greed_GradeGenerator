@@ -37,12 +37,21 @@ import Form from "react-bootstrap/Form";
       ]
 
       let disciplina = {
+        segunda: "",
+        terca: "",
+        quarta: "",
+        quinta: "",
+        sexta: "",
+        sabado: "",
+        domingo: ""
       }
 
       function populateDisciplina (){
         for (const key of selectedDays) {
-           disciplina[key.value] = nome;
+           disciplina[key.value] = "0x2714";
        }
+       disciplina.nome = nome
+       disciplina.sigla = sigla
        disciplina.horario = selectedHour.value
       }
     return (
@@ -100,7 +109,9 @@ import Form from "react-bootstrap/Form";
             <Button variant="primary" onClick={()=> {
                 
                populateDisciplina()
-                props.handleArrayChange(disciplina)}}>
+              props.handleArrayChange(disciplina)
+              handleClose()  
+                }}>
               INSERIR
             </Button>
           </Modal.Footer>

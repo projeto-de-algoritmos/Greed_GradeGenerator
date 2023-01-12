@@ -5,7 +5,11 @@ import AddModal from "./components/modal";
 function App() {
   const [arrayGrade, setArrayGrade] = useState([]);
 
-
+  const Emoji = React.memo(({ className, label, symbol }) =>
+  symbol == ""? <span></span>:
+  <span className={className} role="img" aria-label={label}>
+      {String.fromCodePoint(symbol)}
+  </span>)
   
    const handleArrayChange= (data)=> {
    setArrayGrade(arrayMaterias => [...arrayMaterias, data]);
@@ -39,7 +43,9 @@ function App() {
       <div class="margin">
         <table class="table table-striped table-hover">
           <thead>
-            <tr>
+            <tr class="margin text-center">
+              <th scope="col">NOME</th>
+              <th scope="col">SIGLA</th>
               <th scope="col">HORÁRIO</th>
               <th scope="col">SEGUNDA</th>
               <th scope="col">TERÇA</th>
@@ -53,15 +59,18 @@ function App() {
           <tbody>
             {arrayGrade.map((obj) => {
               return (
-                <tr>
-                  <th scope="row">{obj.horario}</th>
-                  <td>{obj.segunda}</td>
-                  <td>{obj.terca}</td>
-                  <td>{obj.quarta}</td>
-                  <td>{obj.quinta}</td>
-                  <td>{obj.sexta}</td>
-                  <td>{obj.sabado}</td>
-                  <td>{obj.domingo}</td>
+                <tr class="margin text-center">
+                  <th scope="row">{obj.nome}</th>
+                  <td>{obj.sigla}</td>
+                  <td>{obj.horario}</td>
+                  <td><Emoji symbol= {obj.segunda}/></td>
+                  <td><Emoji symbol= {obj.terca}/></td>
+                  <td><Emoji symbol= {obj.quarta}/></td>
+                  <td><Emoji symbol= {obj.quinta}/></td>
+                  <td><Emoji symbol= {obj.sexta}/></td>
+                  <td><Emoji symbol= {obj.sabado}/></td>
+                  <td><Emoji symbol= {obj.domingo}/></td>
+
                 </tr>
               );
             })}
