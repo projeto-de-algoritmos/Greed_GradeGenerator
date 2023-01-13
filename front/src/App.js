@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import AddModal from "./components/modal";
+import intervalScheduling from "./algorithm";
 
 function App() {
   const [arrayGrade, setArrayGrade] = useState([]);
@@ -39,7 +40,7 @@ function App() {
 
       <div class="center">
         <AddModal handleArrayChange = {handleArrayChange}/>
-        <button type="button" class="btn btn-success btn-margin">
+        <button type="button" class="btn btn-success btn-margin" onClick={()=>intervalScheduling(arrayGrade)}>
           GERAR GRADES
         </button>
       </div>
@@ -66,9 +67,9 @@ function App() {
             {arrayGrade.map((obj) => {
               return (
                 <tr class="margin text-center">
-                  <th scope="row">{obj.nome}</th>
-                  <td>{obj.sigla}</td>
-                  <td>{obj.horario}</td>
+                  <th scope="row">{obj.name}</th>
+                  <td>{obj.abbreviation}</td>
+                  <td>{obj.startTime}</td>
                   <td><Emoji symbol= {obj.segunda}/></td>
                   <td><Emoji symbol= {obj.terca}/></td>
                   <td><Emoji symbol= {obj.quarta}/></td>

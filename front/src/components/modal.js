@@ -8,32 +8,32 @@ import Form from "react-bootstrap/Form";
 
   const AddModal = (props) => {
     const [show, setShow] = useState(false);
-    const [nome, setNome] = useState("");
-    const [sigla, setSigla] = useState("");
+    const [name, setName] = useState("");
+    const [abbreviation, setAbbreviation] = useState("");
     const [selectedDays, setSelectedDays] = useState([]);
     const [selectedHour, setSelectedHour] = useState("");
+    const [duration, setDuration] = useState("");
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const animatedComponents = makeAnimated();
 
     const options = [
-        { value: 'segunda', label: 'Segunda' },
-        { value: 'terca', label: 'Terça' },
-        { value: 'quarta', label: 'Quarta' },
-        { value: 'quinta', label: 'Quinta' },
-        { value: 'sexta', label: 'Sexta' },
-        { value: 'sabado', label: 'Sábado' },
-        { value: 'domingo', label: 'Domingo' },
+        { day: 1, value: 'segunda', label: 'Segunda' },
+        { day: 2, value: 'terca', label: 'Terça' },
+        { day: 3, value: 'quarta', label: 'Quarta' },
+        { day: 4, value: 'quinta', label: 'Quinta' },
+        { day: 5, value: 'sexta', label: 'Sexta' },
+        { day: 6, value: 'sabado', label: 'Sábado' },
+        { day: 7, value: 'domingo', label: 'Domingo' },
       ]
 
       const optionsHours = [
-        { value: '08:00', label: '08:00' },
-        { value: '10:00', label: '10:00' },
-        { value: '12:00', label: '12:00' },
-        { value: '14:00', label: '14:00' },
-        { value: '16:00', label: '16:00' },
-        { value: '18:00', label: '18:00' },
+        { value: 8, label: '08:00' },
+        { value: 10, label: '10:00' },
+        { value: 12, label: '12:00' },
+        { value: 14, label: '14:00' },
+        { value: 16, label: '16:00' },
       ]
 
       let disciplina = {
@@ -46,13 +46,25 @@ import Form from "react-bootstrap/Form";
         domingo: ""
       }
 
+      let combinations = {};
+      let days = [];
+      
+      disciplina.name = name
+      disciplina.abbreviation = abbreviation
+      disciplina.startTime = selectedHour.value
+      disciplina.duration = 2
+      disciplina.endTime = selectedHour.value + disciplina.duration
+      
       function populateDisciplina (){
         for (const key of selectedDays) {
            disciplina[key.value] = "0x2714";
        }
-       disciplina.nome = nome
-       disciplina.sigla = sigla
-       disciplina.horario = selectedHour.value
+       for (const key of selectedDays) {
+        days.push(key.day);
+        combinations[key.day] = [selectedHour.value, selectedHour.value + disciplina.duration];
+       }
+       disciplina.days = days.sort()
+       disciplina.combinations = combinations;
       }
     return (
       <>
@@ -72,12 +84,12 @@ import Form from "react-bootstrap/Form";
           <Form>
             <Form.Group className="mb-3" controlId="formNome">
                 <Form.Label>Nome</Form.Label>
-                <Form.Control placeholder="Digite o nome" maxLength="40" onChange={(e)=>{setNome(e.target.value)}} />
+                <Form.Control placeholder="Digite o nome" maxLength="40" onChange={(e)=>{setName(e.target.value)}} />
             </Form.Group>
 
         <Form.Group className="mb-3" controlId="formSigla">
             <Form.Label>Sigla</Form.Label>
-            <Form.Control  placeholder="Digite a sigla" maxLength="5" onChange={(e)=>{setSigla(e.target.value)}} />
+            <Form.Control  placeholder="Digite a sigla" maxLength="5" onChange={(e)=>{setAbbreviation(e.target.value)}} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formSelectDays">
             <Form.Label>Dias da semana</Form.Label>
