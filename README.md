@@ -1,4 +1,4 @@
-# Grade Generator :school:	
+# Salva Semestre :firefighter: :fire:
 
 **Número da Lista**: 3<br>
 **Conteúdo da Disciplina**: Greed (Algoritmos Ambiciosos)<br>
