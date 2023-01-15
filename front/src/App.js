@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import AddModal from "./components/modal";
-import intervalScheduling from "./algorithm";
+import {minimizeLateness, intervalScheduling} from "./algorithm";
 
 function App() {
   const [arrayTasks, setArrayTasks] = useState([]);
@@ -21,7 +21,7 @@ function App() {
   }
 
   const handleRemoveItem = (obj) => {
-     setArrayTasks(arrayTasks.filter(item => item.nome !== obj.nome))
+     setArrayTasks(arrayTasks.filter(item => item.name !== obj.name))
    };
 
   return (
@@ -42,8 +42,11 @@ function App() {
 
       <div class="center">
         <AddModal handleArrayChange = {handleArrayChange}/>
-        <button type="button" class="btn btn-success btn-margin" onClick={()=>intervalScheduling(arrayTasks)}>
-          GERAR MENOR ATRASO
+        <button type="button" class="btn btn-success btn-margin" onClick={()=>minimizeLateness(arrayTasks)}>
+          MINIMIZE LATENESS
+        </button>
+        <button type="button" class="btn btn-info btn-margin" onClick={()=>intervalScheduling(arrayTasks)}>
+          INTERVAL SCHEDULING
         </button>
       </div>
 

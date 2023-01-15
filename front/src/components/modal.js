@@ -14,12 +14,12 @@ import Form from "react-bootstrap/Form";
       let task = {}
 
       task.name = name
-      task.duration = duration
+      task.duration = parseInt(duration)
       task.deadline = new Date(deadline)
       task.deadline.setHours(task.deadline.getHours() + 3)
-      task.start = new Date(deadline)
-      task.start.setHours(task.start.getHours() + 3)
-      task.start.setDate(task.start.getDate() - duration)
+      // task.start = new Date(deadline)
+      // task.start.setHours(task.start.getHours() + 3)
+      // task.start.setDate(task.start.getDate() - duration)
       
     return (
       <>
