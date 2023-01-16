@@ -2,11 +2,44 @@ import { Button, Image } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import check from "../img/check.png";
 import x from "../img/x.png";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const CardActivity = (props) => {
+
   return (
     <Card bg={props.variant}>
-      <Card.Header as="h5">{props.header}</Card.Header>
+      <Card.Header as="h5"> 
+        <Container>
+        <Row className="justify-content-md-center">
+          <Col xs lg="2">
+          {props.header} 
+          </Col>
+          <Col xs lg="20"></Col>
+          <Col xs lg="2">
+          <div>
+          {props.obj.color === "light" ? (
+            <Button
+              variant="outline-light"
+              onClick={() => props.changeColor(props.obj, props.array)}
+            >
+              <Image padding="0" src={check} width="40px" alt="check"></Image>
+            </Button>
+          ) : (
+            <Button
+              variant="success"
+              onClick={() => props.changeColor(props.obj, props.array)}
+            >
+              <Image padding="0" src={x} width="40px" alt="check"></Image>
+            </Button>
+          )}
+        </div>
+          </Col>
+        </Row>
+      </Container>
+
+</Card.Header>
       <Card.Body>
         <div class="container mb-3 center">
           <div class="row w-100 center">
@@ -35,23 +68,7 @@ const CardActivity = (props) => {
             )}
           </div>
         </div>
-        <div class="center">
-          {props.variant === "light" ? (
-            <Button
-              variant="primary"
-              onClick={() => props.changeColor("success")}
-            >
-              <Image padding="0" src={check} width="250px" alt="check"></Image>
-            </Button>
-          ) : (
-            <Button
-              variant="primary"
-              onClick={() => props.changeColor("light")}
-            >
-              <Image padding="0" src={x} width="50px" alt="check"></Image>
-            </Button>
-          )}
-        </div>
+
       </Card.Body>
     </Card>
   );

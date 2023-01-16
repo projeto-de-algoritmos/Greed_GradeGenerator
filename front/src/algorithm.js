@@ -21,7 +21,7 @@ export function minimizeLateness (data) {
 		task.start = new Date(t.valueOf());
 		task.end = addDays(task.start, task.duration);
 		task.lateness = ((task.end - task.deadline) < 1)?(0):Math.floor((task.end - task.deadline)/(1000 * 3600 * 24));
-
+		task.color = "light"
 		s = task.start;
 		f = task.end;
 		t = new Date(f.valueOf());
@@ -41,6 +41,7 @@ export function intervalScheduling (data) {
 
 	
 	for (const task of d){
+		task.color = "light"
 		s = new Date(task.deadline);
 		s.setDate(s.getDate() - task.duration);
 		if(!(answer.includes(task)) && s >= t){

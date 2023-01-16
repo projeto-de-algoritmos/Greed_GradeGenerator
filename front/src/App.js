@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import AddModal from "./components/modal";
 import { minimizeLateness, intervalScheduling } from "./algorithm";
 import CardActivity from "./components/card";
@@ -10,6 +10,8 @@ function App() {
   const [interval, setInterval] = useState(false);
   const [minimize, setMinimize] = useState(false);
   const [variant, setVariant] = useState("light");
+  const [change, setChange] = useState(false);
+
 
   const [intervalArray, setIntervalArray] = useState([]);
   const [minimizeArray, setMinimizeArray] = useState([]);
@@ -17,6 +19,8 @@ function App() {
   function padWithLeadingZeros(num, totalLength) {
     return String(num).padStart(totalLength, "0");
   }
+
+  let count=0;
 
   const Emoji = React.memo(({ className, label, symbol }) =>
     symbol === "" ? (
@@ -28,9 +32,19 @@ function App() {
     )
   );
 
-  const changeColor = (color) => {
-    setVariant(color);
-    console.log(variant);
+  const changeColor = (obj, array) => {
+    const index = array.indexOf(obj)
+    
+    if(array[index].color== "success"){
+      array[index].color = "light"
+    }else if(array[index].color== "light" ){
+      array[index].color = "success"
+    } 
+      handleRemoveItem(obj)
+      handleArrayChange(array[index])
+      console.log(arrayTasks)
+    
+    
   };
 
   const handleArrayChange = (data) => {
@@ -54,6 +68,11 @@ function App() {
   const handleRemoveItem = (obj) => {
     setArrayTasks(arrayTasks.filter((item) => item.name !== obj.name));
   };
+
+  useEffect(() => {
+    //Runs on the first render
+    //And any time any dependency value changes
+  }, [arrayTasks,minimizeArray]);
 
   return (
     <div className="App">
@@ -155,11 +174,12 @@ function App() {
           <div class="center">
             <div class="w-50  ">
               {intervalArray.map((obj) => {
-                return (
+                count++;
+                return (                  
                   <div class="padding">
                     <CardActivity
-                      variant={variant}
-                      header={obj.name}
+                     variant={obj.color}
+                      header= {`${count} - ${obj.name}`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
@@ -169,8 +189,9 @@ function App() {
                       }
                       description={obj.duration}
                       changeColor={changeColor}
+                      obj={obj}
+                      array= {intervalArray}
                     >
-                      {" "}
                     </CardActivity>
                   </div>
                 );
@@ -199,11 +220,12 @@ function App() {
           <div class="center">
             <div class="w-50  ">
               {minimizeArray.map((obj) => {
+                count++;
                 return (
                   <div class="padding">
                     <CardActivity
-                      variant={variant}
-                      header={obj.name}
+                      variant={obj.color}
+                      header= {`${count} - ${obj.name}`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
@@ -214,8 +236,9 @@ function App() {
                       description={obj.duration}
                       lateness={obj.lateness}
                       changeColor={changeColor}
+                      obj={obj}
+                      array= {minimizeArray}
                     >
-                      {" "}
                     </CardActivity>
                   </div>
                 );
