@@ -14,7 +14,10 @@ const CardActivity = (props) => {
         <Container>
         <Row className="justify-content-md-center">
           <Col xs lg="0">
-          {props.header} 
+            <Row>
+          <b style={{color:"orange"}} class="m-3">{props.header} </b>
+          <p className="m-3"> {props.obj.name}</p>
+          </Row>
           </Col>
           <Col xs lg="2"></Col>
           <Col xs lg="2">

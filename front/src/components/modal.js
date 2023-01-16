@@ -33,7 +33,7 @@ import Form from "react-bootstrap/Form";
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>ADICIONAR DISCIPLINA</Modal.Title>
+            <Modal.Title>ADICIONAR TAREFA</Modal.Title>
           </Modal.Header>
           <Modal.Body>
           <Form>

@@ -168,6 +168,7 @@ function App() {
               Voltar para página inicial
             </button>
           </div>
+          <b className="center"> Máximo de Atividade</b>
           <div class="center">
             <div class="w-50  ">
               {intervalArray.map((obj) => {
@@ -176,7 +177,7 @@ function App() {
                   <div class="padding">
                     <CardActivity
                      variant={obj.color}
-                     header= {`Atividade ${count} - ${obj.name}`}
+                     header= {`[Atividade ${count}]`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
@@ -204,6 +205,7 @@ function App() {
       {minimize ? (
         <>
           <div class="center">
+            
             <button
               type="button"
               class="btn btn-warning btn-margin"
@@ -215,6 +217,7 @@ function App() {
               Voltar para página inicial
             </button>
           </div>
+          <b className="center"> Menor Atraso</b>
           <div class="center">
             <div class="w-50  ">
               {minimizeArray.map((obj) => {
@@ -223,7 +226,7 @@ function App() {
                   <div class="padding">
                     <CardActivity
                       variant={obj.color}
-                      header= {`Atividade ${count} - ${obj.name}`}
+                      header= {`[Atividade ${count}]`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
