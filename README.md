@@ -33,6 +33,7 @@ Necessário ter o [Node.js](https://nodejs.org/en/download/) instalado
 
 Para rodar o projeto abra o terminal e execute os seguintes comandos:
 ```
+cd front
 npm install # Para instalar as dependências do projeto
 npm start # Inicializará o projeto na porta 3000
 ```
