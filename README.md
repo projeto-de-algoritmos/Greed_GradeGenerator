@@ -27,8 +27,9 @@ Devido ao grande aumento de atividades ao se aproximar do término do semestre, 
 **Linguagem**: JavaScript<br>
 **Framework**: React<br>
 
+Necessário ter o [Node.js](https://nodejs.org/en/download/) instalado 
+
 ## Uso 
-Para utilizar é necessário ter o Node.Js instalado na máquina
 
 Para rodar o projeto abra o terminal e execute os seguintes comandos:
 ```
