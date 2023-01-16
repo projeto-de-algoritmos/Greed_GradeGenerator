@@ -9,8 +9,6 @@ function App() {
   const [home, setHome] = useState(true);
   const [interval, setInterval] = useState(false);
   const [minimize, setMinimize] = useState(false);
-  const [variant, setVariant] = useState("light");
-  const [change, setChange] = useState(false);
 
 
   const [intervalArray, setIntervalArray] = useState([]);
@@ -35,9 +33,9 @@ function App() {
   const changeColor = (obj, array) => {
     const index = array.indexOf(obj)
     
-    if(array[index].color== "success"){
+    if(array[index].color=== "success"){
       array[index].color = "light"
-    }else if(array[index].color== "light" ){
+    }else if(array[index].color=== "light" ){
       array[index].color = "success"
     } 
       handleRemoveItem(obj)
@@ -165,7 +163,6 @@ function App() {
               onClick={() => {
                 setHome(true);
                 setInterval(false);
-                setVariant("light");
               }}
             >
               Voltar para página inicial
@@ -179,7 +176,7 @@ function App() {
                   <div class="padding">
                     <CardActivity
                      variant={obj.color}
-                      header= {`${count} - ${obj.name}`}
+                     header= {`Atividade ${count} - ${obj.name}`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
@@ -191,6 +188,7 @@ function App() {
                       changeColor={changeColor}
                       obj={obj}
                       array= {intervalArray}
+                     
                     >
                     </CardActivity>
                   </div>
@@ -225,7 +223,7 @@ function App() {
                   <div class="padding">
                     <CardActivity
                       variant={obj.color}
-                      header= {`${count} - ${obj.name}`}
+                      header= {`Atividade ${count} - ${obj.name}`}
                       deadline={
                         obj.deadline.getDate() +
                         "/" +
@@ -238,6 +236,13 @@ function App() {
                       changeColor={changeColor}
                       obj={obj}
                       array= {minimizeArray}
+                      end={
+                        obj.end.getDate() +
+                        "/" +
+                        padWithLeadingZeros(obj.end.getMonth() + 1, 2) +
+                        "/" +
+                        obj.end.getFullYear()
+                      }
                     >
                     </CardActivity>
                   </div>

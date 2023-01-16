@@ -13,10 +13,10 @@ const CardActivity = (props) => {
       <Card.Header as="h5"> 
         <Container>
         <Row className="justify-content-md-center">
-          <Col xs lg="2">
+          <Col xs lg="0">
           {props.header} 
           </Col>
-          <Col xs lg="20"></Col>
+          <Col xs lg="2"></Col>
           <Col xs lg="2">
           <div>
           {props.obj.color === "light" ? (
@@ -42,7 +42,7 @@ const CardActivity = (props) => {
 </Card.Header>
       <Card.Body>
         <div class="container mb-3 center">
-          <div class="row w-100 center">
+          <div class="row w-100 center mb-3">
             <div class="col">
               {" "}
               <Card.Text>
@@ -67,8 +67,16 @@ const CardActivity = (props) => {
               <> </>
             )}
           </div>
+         
+         
         </div>
-
+        {props.end&&  <div >
+              <div class="center m-3">
+              <Card.Text>
+                <b> Término da Atividade:</b> {props.end}
+              </Card.Text>
+              </div>
+          </div>}
       </Card.Body>
     </Card>
   );
