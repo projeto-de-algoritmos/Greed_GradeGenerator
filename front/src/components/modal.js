@@ -11,6 +11,11 @@ import Form from "react-bootstrap/Form";
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const clearState= () =>{
+        setDeadline("");
+        setName("");
+        setDuration("");
+    }
       let task = {}
 
       task.name = name
@@ -60,11 +65,9 @@ import Form from "react-bootstrap/Form";
               CANCELAR
             </Button>
             <Button variant="primary" onClick={()=> {
-              deadline.length == 0 ? alert("Insira uma deadline válida"):
+              deadline.length == 0 || duration.length ==0? alert("Preencha todos os campos"):
               props.handleArrayChange(task)
-              handleClose()  
-              duration.length == 0 ? alert("Insira uma duração válida"):
-              props.handleArrayChange(task)
+              clearState()
               handleClose()  
                 }}>
               INSERIR
