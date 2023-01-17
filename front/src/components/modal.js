@@ -60,6 +60,10 @@ import Form from "react-bootstrap/Form";
               CANCELAR
             </Button>
             <Button variant="primary" onClick={()=> {
+              deadline.length == 0 ? alert("Insira uma deadline válida"):
+              props.handleArrayChange(task)
+              handleClose()  
+              duration.length == 0 ? alert("Insira uma duração válida"):
               props.handleArrayChange(task)
               handleClose()  
                 }}>
