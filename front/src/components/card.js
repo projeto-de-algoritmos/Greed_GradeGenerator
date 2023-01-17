@@ -60,11 +60,10 @@ const CardActivity = (props) => {
               </Card.Text>
             </div>
             {props.lateness && props.lateness !== 0 ? (
-              <div class="col">
+              <div class="col w-100">
                 <Card.Text>
                   <b> Tempo de atraso: </b>
-                  {props.lateness}
-                  <p> dias</p>
+                  {props.lateness + " dias"}
                 </Card.Text>
               </div>
             ) : (
