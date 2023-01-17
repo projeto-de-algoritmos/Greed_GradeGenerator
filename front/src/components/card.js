@@ -64,6 +64,7 @@ const CardActivity = (props) => {
                 <Card.Text>
                   <b> Tempo de atraso: </b>
                   {props.lateness}
+                  <b> dias</b>
                 </Card.Text>
               </div>
             ) : (
